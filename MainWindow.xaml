@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:nomeTop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowState="Maximized"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Topmost="True"
+        Background="Black"
+        Title="UMFG - Home" Height="450" Width="800">
     <Grid>
+        <!--<Button 
+            Height="50" 
+            Width="100" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top"
+            Click="Button_Click" 
+            >TESTE</Button>-->
 
     </Grid>
 </Window>
