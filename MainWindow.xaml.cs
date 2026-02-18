@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using umfg.venda.app.ViewModels;
 
 namespace nomeTop
 {
@@ -19,11 +20,7 @@ namespace nomeTop
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Olá mundo!");
+            DataContext = new MainWindowViewModel();
         }
     }
 }
