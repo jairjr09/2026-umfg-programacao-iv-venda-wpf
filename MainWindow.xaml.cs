@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using umfg.venda.app.UserControls;
 using umfg.venda.app.ViewModels;
 
 namespace nomeTop
@@ -20,7 +21,11 @@ namespace nomeTop
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+
+            var viewModel = new MainWindowViewModel();
+            viewModel.UserControl = new ucListarProdutos();
+
+            DataContext = viewModel;
         }
     }
 }
