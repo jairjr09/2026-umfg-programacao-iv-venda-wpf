@@ -23,6 +23,7 @@ namespace umfg.venda.app.UserControls
         public ucListarProdutos()
         {
             InitializeComponent();
+            DataContext
         }
     }
 }

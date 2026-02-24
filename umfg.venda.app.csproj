@@ -9,23 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Imagens\batata.png" />
-    <None Remove="Imagens\combo.png" />
-    <None Remove="Imagens\lanche.png" />
-    <None Remove="Imagens\refrigerante.png" />
+    <None Remove="Images\batata.png" />
+    <None Remove="Images\combo.png" />
+    <None Remove="Images\lanche.png" />
+    <None Remove="Images\refrigerante.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Imagens\batata.png">
+    <Content Include="Images\batata.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Imagens\combo.png">
+    <Content Include="Images\combo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Imagens\lanche.png">
+    <Content Include="Images\lanche.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Imagens\refrigerante.png">
+    <Content Include="Images\refrigerante.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
