@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using umfg.venda.app.Abstracts;
+using umfg.venda.app.Interfaces;
 using umfg.venda.app.Models;
 
 namespace umfg.venda.app.ViewModels
@@ -27,8 +29,12 @@ namespace umfg.venda.app.ViewModels
             set => SetField(ref _produtos, value);
         }
 
-        public ListarProdutosViewModel() : base("Produtos")
+        public ListarProdutosViewModel(IObserver observer, UserControl userControl) : base("Produtos")
         {
+            UserControl = userControl;
+            MainWindows = observer;
+
+            Add(observer);
             CarregarProdutos();
         }
 
@@ -39,7 +45,7 @@ namespace umfg.venda.app.ViewModels
             Produtos.Add(new ProdutoModel
             {
                 Imagem = new BitmapImage(
-                    new Uri(@"..\net-8.0-windows\Images\batata.png", UriKind.Relative)),
+                    new Uri(@"..\net8.0-windows\Images\batata.png", UriKind.Relative)),
                     Descricao = "Batata Frita 300gr",
                     Referencia = "0001",
                     Valor = 10.90m
@@ -48,7 +54,7 @@ namespace umfg.venda.app.ViewModels
             Produtos.Add(new ProdutoModel
             {
                 Imagem = new BitmapImage(
-                    new Uri(@"..\net-8.0-windows\Images\combo.png", UriKind.Relative)),
+                    new Uri(@"..\net8.0-windows\Images\combo.png", UriKind.Relative)),
                 Descricao = "Combo Big Mac + Batata 300gr + Refil 500ML",
                 Referencia = "0002",
                 Valor = 49.90m,
@@ -57,7 +63,7 @@ namespace umfg.venda.app.ViewModels
             Produtos.Add(new ProdutoModel
             {
                 Imagem = new BitmapImage(
-                    new Uri(@"..\net-8.0-windows\Images\lanche.png", UriKind.Relative)),
+                    new Uri(@"..\net8.0-windows\Images\lanche.png", UriKind.Relative)),
                 Descricao = "Big Mac 350gr",
                 Referencia = "0003",
                 Valor = 25.90m,
@@ -66,7 +72,7 @@ namespace umfg.venda.app.ViewModels
             Produtos.Add(new ProdutoModel
             {
                 Imagem = new BitmapImage(
-                    new Uri(@"..\net-8.0-windows\Images\refrigerante.png", UriKind.Relative)),
+                    new Uri(@"..\net8.0-windows\Images\refrigerante.png", UriKind.Relative)),
                 Descricao = "Refrigerante Refil 500ML",
                 Referencia = "0004",
                 Valor = 10.90m,

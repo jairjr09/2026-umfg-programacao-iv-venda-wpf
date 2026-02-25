@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using umfg.venda.app.Interfaces;
 
 namespace umfg.venda.app.Abstracts
@@ -10,7 +11,12 @@ namespace umfg.venda.app.Abstracts
     internal abstract class AbstractViewModel : AbstractNotifyPropertyChange, ISubject
     {
         private readonly ICollection<IObserver> _observers = [];
+
         private string _titulo = string.Empty;
+
+        public UserControl UserControl { get; protected set; }
+        
+        public IObserver MainWindows { get; protected set; }
 
         public string Titulo 
         {
@@ -25,7 +31,7 @@ namespace umfg.venda.app.Abstracts
 
         public void Add(IObserver observer)
         {
-            throw new NotImplementedException();
+            _observers.Add(observer);
         }
 
         public void Remove(IObserver observer)
@@ -35,7 +41,8 @@ namespace umfg.venda.app.Abstracts
 
         public void Notify()
         {
-            throw new NotImplementedException();
+            foreach (var observer in _observers)
+                observer.Update(this);
         }
     }
 }
