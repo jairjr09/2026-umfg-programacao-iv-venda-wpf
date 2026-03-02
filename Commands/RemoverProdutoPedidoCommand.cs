@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using umfg.venda.app.Abstracts;
+using umfg.venda.app.ViewModels;
+
+namespace umfg.venda.app.Commands
+{
+    internal class RemoverProdutoPedidoCommand : AbstractCommand
+    {
+        public override bool CanExecute(object? parameter)
+        {
+            var vm = parameter as ListarProdutosViewModel;
+
+            return vm is not null && vm.Pedido.Produtos.Any();
+        }
+        
+        public override void Execute(object? parameter)
+        {
+            var vm = parameter as ListarProdutosViewModel;
+
+            if ( vm is null)
+            {
+                MessageBox.Show("Paramêtro obrigaório não foi informado! Verifique.");
+                return;
+            }
+
+            if (vm.ProdutoSelecionado is null || Guid.Empty.Equals(vm.ProdutoSelecionado.Id))
+            {
+                MessageBox.Show("Nenhum produto selecionado para remover do carrinho!");
+                return;
+            }
+
+            if (vm.Pedido.Produtos.Any(x => x.Id == vm.ProdutoSelecionado.Id))
+            {
+                MessageBox.Show($"{vm.ProdutoSelecionado.Descricao} não foi encontrado no carrinho!");
+                return;
+            }
+
+            vm.Pedido.Produtos.Remove(vm.ProdutoSelecionado);
+            vm.Pedido.Total = vm.Pedido.Produtos.Sum(x => x.Valor);
+
+        }
+    }
+}
