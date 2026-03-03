@@ -34,14 +34,22 @@ namespace umfg.venda.app.Commands
                 return;
             }
 
-            if (vm.Pedido.Produtos.Any(x => x.Id == vm.ProdutoSelecionado.Id))
+            if (!vm.Pedido.Produtos.Any(x => x.Id == vm.ProdutoSelecionado.Id))
             {
                 MessageBox.Show($"{vm.ProdutoSelecionado.Descricao} não foi encontrado no carrinho!");
                 return;
             }
 
+            var result = MessageBox.Show("Deseja realmente incluir este item no carrinho?", "", MessageBoxButton.YesNo);
+
+            if (!MessageBoxResult.Yes.Equals(result))
+            {
+                return;
+            }
+
             vm.Pedido.Produtos.Remove(vm.ProdutoSelecionado);
             vm.Pedido.Total = vm.Pedido.Produtos.Sum(x => x.Valor);
+            vm.RaiseCanExecuteChanged();
 
         }
     }

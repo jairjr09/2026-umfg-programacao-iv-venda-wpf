@@ -16,7 +16,7 @@ namespace umfg.venda.app.Abstracts
 
         public UserControl UserControl { get; protected set; }
         
-        public IObserver MainWindows { get; protected set; }
+        public IObserver MainWindow { get; protected set; }
 
         public string Titulo 
         {

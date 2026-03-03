@@ -44,10 +44,17 @@ namespace umfg.venda.app.ViewModels
         public ListarProdutosViewModel(IObserver observer, UserControl userControl) : base("Produtos")
         {
             UserControl = userControl;
-            MainWindows = observer;
+            MainWindow = observer;
 
             Add(observer);
             CarregarProdutos();
+        }
+        
+        public void RaiseCanExecuteChanged()
+        {
+            Adicionar.RaiseCanExecuteChanged();
+            Remover.RaiseCanExecuteChanged();
+            //Receber.RaiseCanExecuteChanged();
         }
 
         private void CarregarProdutos()

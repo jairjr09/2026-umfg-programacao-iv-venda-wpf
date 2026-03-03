@@ -18,7 +18,7 @@ namespace umfg.venda.app.Abstracts
 
         public abstract void Execute(object? parameter);
 
-        public void RaizeCanExecuteChanged()
+        public void RaiseCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }

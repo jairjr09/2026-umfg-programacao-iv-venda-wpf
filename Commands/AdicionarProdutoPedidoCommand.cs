@@ -43,6 +43,7 @@ namespace umfg.venda.app.Commands
 
             vm.Pedido.Produtos.Add(vm.ProdutoSelecionado);
             vm.Pedido.Total = vm.Pedido.Produtos.Sum(x => x.Valor);
+            vm.RaiseCanExecuteChanged();
         }
     }
 }
