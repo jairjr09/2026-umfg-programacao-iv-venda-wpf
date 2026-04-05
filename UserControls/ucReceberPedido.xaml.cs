@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,15 +24,54 @@ namespace umfg.venda.app.UserControls
     /// </summary>
     public partial class ucReceberPedido : UserControl
     {
-        private  ucReceberPedido(IObserver observer, PedidoModel pedido)
+
+        private ucReceberPedido(IObserver observer, PedidoModel pedido)
         {
             InitializeComponent();
-            DataContext = new ReceberPedidoViewModel(this, observer, pedido);
+
+            var vm = new ReceberPedidoViewModel(this, observer, pedido);
+
+            vm.DataValidade = DateTime.Now;
+
+            DataContext = vm;
         }
 
         internal static void Exibir(IObserver observer, PedidoModel pedido)
         {
             (new ucReceberPedido(observer, pedido).DataContext as ReceberPedidoViewModel).Notify();   
+        }
+
+        private void SomenteNumeros(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
+        }
+
+        private void SomenteLetras(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, @"^[\p{L} ]+$");
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dpHidden.SelectedDate.HasValue)
+            {
+                var data = dpHidden.SelectedDate.Value;
+
+                dpHidden.SelectedDate = new DateTime(data.Year, data.Month, 1);
+            }
+
+            dpHidden.Visibility = Visibility.Collapsed;
+        }
+
+        private void BloquearDigitacao(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void AbrirCalendario(object sender, MouseButtonEventArgs e)
+        {
+            dpHidden.Visibility = Visibility.Visible;
+            dpHidden.IsDropDownOpen = true;
         }
     }
 }
